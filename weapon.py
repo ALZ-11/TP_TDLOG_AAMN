@@ -27,4 +27,5 @@ class Lance_missiles_antisurface(Weapon):
             assert z == 0
         except:
             raise OutOfRangeError
-        self.ammunitions -= 1
+        finally:
+            self.ammunitions -= 1
