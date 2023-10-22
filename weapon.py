@@ -29,3 +29,15 @@ class Lance_missiles_antisurface(Weapon):
             raise OutOfRangeError
         finally:
             self.ammunitions -= 1
+
+class Lance_missiles_antiair(Weapon):
+    def __init__(self):
+        super().__init__(40, 20)
+    def fire_at(self, x: int, y: int, z: int):
+        super().fire_at(x, y, z)
+        try:
+            assert z > 0
+        except:
+            raise OutOfRangeError
+        finally:
+            self.ammunitions -= 1
