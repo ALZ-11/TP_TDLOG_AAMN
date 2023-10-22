@@ -1,10 +1,10 @@
 class NoAmmoError(Exception):
-    def __init__(self, message="No ammo left. Cannot fire."):
+    def __init__(self, message = "No ammo left. Cannot fire."):
         self.message = message
         super().__init__(self.message)
 
 class OutOfRangeError(Exception):
-    def __init__(self, message="Target is out of range. Cannot fire."):
+    def __init__(self, message = "Target is out of range. Cannot fire."):
         self.message = message
         super().__init__(self.message)
 
