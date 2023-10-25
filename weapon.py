@@ -27,7 +27,6 @@ class Lance_missiles_antisurface(Weapon):
             assert z == 0
         except:
             raise OutOfReachError
-        self.ammunitions -= 1
 
 class Lance_missiles_antiair(Weapon):
     def __init__(self):
@@ -38,7 +37,6 @@ class Lance_missiles_antiair(Weapon):
             assert z > 0
         except:
             raise OutOfReachError
-        self.ammunitions -= 1
 
 class Lance_tropilles(Weapon):
     def __init__(self):
@@ -49,4 +47,3 @@ class Lance_tropilles(Weapon):
             assert z <= 0
         except:
             raise OutOfReachError
-        self.ammunitions -= 1
