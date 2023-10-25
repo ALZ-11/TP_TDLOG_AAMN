@@ -3,8 +3,8 @@ class NoAmmoError(Exception):
         self.message = message
         super().__init__(self.message)
 
-class OutOfRangeError(Exception):
-    def __init__(self, message = "Target is out of range. Cannot fire."):
+class OutOfReachError(Exception):
+    def __init__(self, message = "Target is out of reach. Cannot fire."):
         self.message = message
         super().__init__(self.message)
 
@@ -26,9 +26,8 @@ class Lance_missiles_antisurface(Weapon):
         try:
             assert z == 0
         except:
-            raise OutOfRangeError
-        finally:
-            self.ammunitions -= 1
+            raise OutOfReachError
+        self.ammunitions -= 1
 
 class Lance_missiles_antiair(Weapon):
     def __init__(self):
@@ -38,9 +37,8 @@ class Lance_missiles_antiair(Weapon):
         try:
             assert z > 0
         except:
-            raise OutOfRangeError
-        finally:
-            self.ammunitions -= 1
+            raise OutOfReachError
+        self.ammunitions -= 1
 
 class Lance_tropilles(Weapon):
     def __init__(self):
@@ -50,6 +48,5 @@ class Lance_tropilles(Weapon):
         try:
             assert z <= 0
         except:
-            raise OutOfRangeError
-        finally:
-            self.ammunitions -= 1
+            raise OutOfReachError
+        self.ammunitions -= 1

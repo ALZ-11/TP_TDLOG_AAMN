@@ -27,7 +27,7 @@ class TestLanceMissilesAntiSurface(unittest.TestCase):
 
     def test_fire_at_out_of_range(self):
         weapon = Lance_missiles_antisurface()
-        with self.assertRaises(OutOfRangeError):
+        with self.assertRaises(OutOfReachError):
             weapon.fire_at(1, 2, 1)
 
     def test_fire_at_without_ammo(self):
@@ -50,7 +50,7 @@ class TestLanceMissilesAntiAir(unittest.TestCase):
 
     def test_fire_at_out_of_range(self):
         weapon = Lance_missiles_antiair()
-        with self.assertRaises(OutOfRangeError):
+        with self.assertRaises(OutOfReachError):
             weapon.fire_at(1, 2, 0)
 
     def test_fire_at_without_ammo(self):
@@ -73,7 +73,7 @@ class TestLanceTropilles(unittest.TestCase):
 
     def test_fire_at_out_of_range(self):
         weapon = Lance_tropilles()
-        with self.assertRaises(OutOfRangeError):
+        with self.assertRaises(OutOfReachError):
             weapon.fire_at(1, 2, 1)
 
     def test_fire_at_without_ammo(self):
