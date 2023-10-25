@@ -6,6 +6,11 @@ class OutOfRangeError(Exception):
         self.message = message
         super().__init__(self.message)
 
+class OutOfCapabilityError(Exception):
+    def __init__(self, message="Coordinates are beyond the vessel's capability."):
+        self.message = message
+        super().__init__(self.message)
+
 def distance(tuple1 : tuple, tuple2 : tuple):
 	return sqrt(sum([(tuple1[i] - tuple2[i]) ** 2 for i in range(len(tuple1))]))
 
@@ -26,7 +31,10 @@ class Vessel:
 			raise DestroyedError
 		return self.coordinates
 	def go_to(self, x, y, z):
-		self.coordinates = (x, y, z)
+		try:
+			assert self.max_hits > 0
+		except:
+			raise DestroyedError
 	def fire_at(self, x, y, z):
 		try:
 			assert self.max_hits > 0
@@ -43,3 +51,10 @@ class Vessel:
 class Cruiser(Vessel):
 	def __init__(self, coordinates):
 		super().__init__(coordinates, 6, Lance_missiles_antiair())
+	def go_to(self, x, y, z):
+		super().go_to(x, y, z) #before, verify that the vessel is not destroyed :)
+		try:
+			assert z == 0
+		except:
+			raise OutOfCapabilityError
+		self.coordinates = (x, y, z)
