@@ -1,7 +1,16 @@
 from weapon import *
+from math import sqrt
+
+class OutOfRangeError(Exception):
+    def __init__(self, message = "Target is out of range."):
+        self.message = message
+        super().__init__(self.message)
+
+def distance(tuple1 : tuple, tuple2 : tuple):
+	return sqrt(sum([(tuple1[i] - tuple2[i]) ** 2 for i in range(len(tuple1))]))
 
 class DestroyedError(Exception):
-    def __init__(self, message="The vessel is destroyed. Cannot get coordinates."):
+    def __init__(self, message="The vessel is destroyed."):
         self.message = message
         super().__init__(self.message)
 
