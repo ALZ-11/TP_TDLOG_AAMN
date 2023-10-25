@@ -20,3 +20,10 @@ class TestVessel(unittest.TestCase):
         vessel = Vessel(initial_coordinates, 5, Weapon(10, 50))
         vessel.go_to(new_coordinates)
         self.assertEqual(vessel.coordinates, new_coordinates)
+        
+class TestCruiser(unittest.TestCase):
+    def test_initialization(self):
+        cruiser = Cruiser((1, 2, 3))
+        self.assertEqual(cruiser.coordinates, (1, 2, 3))
+        self.assertEqual(cruiser.max_hits, 6)
+        self.assertIsInstance(cruiser.weapon, Lance_missiles_antiair)
