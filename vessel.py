@@ -28,7 +28,17 @@ class Vessel:
 	def go_to(self, x, y, z):
 		self.coordinates = (x, y, z)
 	def fire_at(self, x, y, z):
+		try:
+			assert self.max_hits > 0
+		except:
+			raise DestroyedError
 		self.weapon.fire_at(x, y, z)
+		try:
+			assert distance((x, y, z), self.get_coordinates()) <= self.weapon.range
+		except:
+			raise OutOfRangeError
+		finally:
+			self.weapon.ammunitions -= 1
 
 class Cruiser(Vessel):
 	def __init__(self, coordinates):
