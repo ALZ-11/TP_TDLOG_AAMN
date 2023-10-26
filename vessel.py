@@ -21,6 +21,7 @@ class DestroyedError(Exception):
 
 class Vessel:
 	def __init__(self, coordinates : tuple, max_hits : int, weapon : Weapon):
+		assert len(coordinates) == 3
 		self.coordinates = coordinates
 		self.max_hits = max_hits
 		self.weapon = weapon
@@ -35,6 +36,7 @@ class Vessel:
 			assert self.max_hits > 0
 		except:
 			raise DestroyedError
+		self.coordinates = (x, y, z)
 	def fire_at(self, x, y, z):
 		try:
 			assert self.max_hits > 0
@@ -50,11 +52,14 @@ class Vessel:
 
 class Cruiser(Vessel):
 	def __init__(self, coordinates):
+		try:
+			assert coordinates[2] == 0
+		except:
+			raise OutOfCapabilityError
 		super().__init__(coordinates, 6, Lance_missiles_antiair())
 	def go_to(self, x, y, z):
-		super().go_to(x, y, z) #before, verify that the vessel is not destroyed :)
 		try:
 			assert z == 0
 		except:
 			raise OutOfCapabilityError
-		self.coordinates = (x, y, z)
+		super().go_to(x, y, z)
