@@ -63,3 +63,59 @@ class Cruiser(Vessel):
 		except:
 			raise OutOfCapabilityError
 		super().go_to(x, y, z)
+
+class Submarine(Vessel):
+	def __init__(self, coordinates):
+		try:
+			assert coordinates[2] == 0 or coordinates[2] == -1
+		except:
+			raise OutOfCapabilityError
+		super().__init__(coordinates, 2, Lance_tropilles())
+	def go_to(self, x, y, z):
+		try:
+			assert z == 0 or z == -1
+		except:
+			raise OutOfCapabilityError
+		super().go_to(x, y, z)
+
+class Fregate(Vessel):
+	def __init__(self, coordinates):
+		try:
+			assert coordinates[2] == 0
+		except:
+			raise OutOfCapabilityError
+		super().__init__(coordinates, 5, Lance_missiles_antisurface())
+	def go_to(self, x, y, z):
+		try:
+			assert z == 0
+		except:
+			raise OutOfCapabilityError
+		super().go_to(x, y, z)
+
+class Destroyer(Vessel):
+	def __init__(self, coordinates):
+		try:
+			assert coordinates[2] == 0
+		except:
+			raise OutOfCapabilityError
+		super().__init__(coordinates, 4, Lance_tropilles())
+	def go_to(self, x, y, z):
+		try:
+			assert z == 0
+		except:
+			raise OutOfCapabilityError
+		super().go_to(x, y, z)
+
+class Aircraft(Vessel):
+	def __init__(self, coordinates):
+		try:
+			assert coordinates[2] == 1
+		except:
+			raise OutOfCapabilityError
+		super().__init__(coordinates, 1, Lance_missiles_antisurface())
+	def go_to(self, x, y, z):
+		try:
+			assert z == 1
+		except:
+			raise OutOfCapabilityError
+		super().go_to(x, y, z)
