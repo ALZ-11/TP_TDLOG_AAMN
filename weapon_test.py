@@ -20,12 +20,12 @@ class TestLanceMissilesAntiSurface(unittest.TestCase):
         self.assertEqual(weapon.ammunitions, 50)
         self.assertEqual(weapon.range, 100)
 
-    def test_fire_at_within_range(self):
+    def test_fire_at_within_reach(self):
         weapon = Lance_missiles_antisurface()
         self.assertIsNone(weapon.fire_at(1, 2, 0))
         self.assertEqual(weapon.ammunitions, 49)  
 
-    def test_fire_at_out_of_range(self):
+    def test_fire_at_out_of_reach(self):
         weapon = Lance_missiles_antisurface()
         with self.assertRaises(OutOfReachError):
             weapon.fire_at(1, 2, 1)
@@ -43,12 +43,12 @@ class TestLanceMissilesAntiAir(unittest.TestCase):
         self.assertEqual(weapon.ammunitions, 40)
         self.assertEqual(weapon.range, 20)
 
-    def test_fire_at_within_range(self):
+    def test_fire_at_within_reach(self):
         weapon = Lance_missiles_antiair()
         self.assertIsNone(weapon.fire_at(1, 2, 1))
         self.assertEqual(weapon.ammunitions, 39)  
 
-    def test_fire_at_out_of_range(self):
+    def test_fire_at_out_of_reach(self):
         weapon = Lance_missiles_antiair()
         with self.assertRaises(OutOfReachError):
             weapon.fire_at(1, 2, 0)
@@ -66,12 +66,12 @@ class TestLanceTropilles(unittest.TestCase):
         self.assertEqual(weapon.ammunitions, 24)
         self.assertEqual(weapon.range, 40)
 
-    def test_fire_at_within_range(self):
+    def test_fire_at_within_reach(self):
         weapon = Lance_tropilles()
         self.assertIsNone(weapon.fire_at(1, 2, 0))
         self.assertEqual(weapon.ammunitions, 23)  
 
-    def test_fire_at_out_of_range(self):
+    def test_fire_at_out_of_reach(self):
         weapon = Lance_tropilles()
         with self.assertRaises(OutOfReachError):
             weapon.fire_at(1, 2, 1)
