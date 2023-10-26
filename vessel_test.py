@@ -47,3 +47,25 @@ class TestVessel(unittest.TestCase):
         with self.assertRaises(OutOfRangeError):
             vessel.fire_at(1, 1, 1)
         self.assertEqual(weapon.ammunitions, 9)
+
+class TestCruiser(unittest.TestCase):
+    def test_cruiser_initialization(self):
+        coordinates = (1, 2, 0) 
+        cruiser = Cruiser(coordinates)
+        self.assertEqual(cruiser.coordinates, coordinates)
+        self.assertEqual(cruiser.max_hits, 6)
+        self.assertIsInstance(cruiser.weapon, Lance_missiles_antiair)
+
+    def test_cruiser_go_to_valid_coordinates(self):
+        initial_coordinates = (1, 2, 0)
+        new_coordinates = (4, 5, 0)
+        cruiser = Cruiser(initial_coordinates)
+        cruiser.go_to(new_coordinates)
+        self.assertEqual(cruiser.coordinates, new_coordinates)
+
+    def test_cruiser_go_to_invalid_coordinates(self):
+        initial_coordinates = (1, 2, 0)
+        new_coordinates = (4, 5, 1)  
+        cruiser = Cruiser(initial_coordinates)
+        with self.assertRaises(OutOfCapabilityError):
+            cruiser.go_to(new_coordinates)
